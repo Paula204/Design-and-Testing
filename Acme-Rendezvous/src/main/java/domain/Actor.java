@@ -1,3 +1,4 @@
+
 package domain;
 
 import javax.persistence.Access;
@@ -17,55 +18,56 @@ import security.UserAccount;
 @Entity
 @Access(AccessType.PROPERTY)
 public abstract class Actor extends DomainEntity {
-	private String name;
-	private  String surname;
-	private String address;
-	private String phone;
-	private String email;
-	private UserAccount userAccount;
 
-	
+	private String		name;
+	private String		surname;
+	private String		address;
+	private String		phone;
+	private String		email;
+
+	private UserAccount	userAccount;
+
 
 	@NotBlank
 	public String getName() {
-		return name;
+		return this.name;
 	}
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
-	
+
 	@NotBlank
 	public String getSurname() {
-		return surname;
+		return this.surname;
 	}
-	public void setSurname(String surname) {
+	public void setSurname(final String surname) {
 		this.surname = surname;
 	}
-	
-	
+
 	public String getAddress() {
-		return address;
+		return this.address;
 	}
-	public void setAddress(String address) {
+	public void setAddress(final String address) {
 		this.address = address;
 	}
-	
-	@Pattern(regexp = "^(\\+[0-9]{1,3}\\ \\([0-9]{1,3}\\)\\ [0-9]{3,9})|([0-9]{3,15})|(\\+[0-9]{1,3}\\ [0-9]{3,15})$")	public String getPhone() {
-		return phone;
+
+	@Pattern(regexp = "^(\\+[0-9]{1,3}\\ \\([0-9]{1,3}\\)\\ [0-9]{3,9})|([0-9]{3,15})|(\\+[0-9]{1,3}\\ [0-9]{3,15})$")
+	public String getPhone() {
+		return this.phone;
 	}
-	public void setPhone(String phone) {
+	public void setPhone(final String phone) {
 		this.phone = phone;
 	}
-	
+
 	@NotBlank
 	@Email
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
-	public void setEmail(String email) {
+	public void setEmail(final String email) {
 		this.email = email;
 	}
-	
+
 	@Valid
 	@NotNull
 	@OneToOne(cascade = CascadeType.ALL)
@@ -76,8 +78,5 @@ public abstract class Actor extends DomainEntity {
 	public void setUserAccount(final UserAccount userAccount) {
 		this.userAccount = userAccount;
 	}
-
-	
-	
 
 }

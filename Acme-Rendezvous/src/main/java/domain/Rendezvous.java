@@ -1,3 +1,4 @@
+
 package domain;
 
 import java.util.Collection;
@@ -12,94 +13,111 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Access(AccessType.PROPERTY)
 public class Rendezvous extends DomainEntity {
-	
-	private String name;
-	private String description;
-	private Date moment;
-	private Location location;
-	private boolean rsvp;
-	private Collection<User> users;
-	private Collection<Comment> comments;
-	private User user;
+
+	private String				name;
+	private String				description;
+	private Date				moment;
+	private Location			location;
+	private boolean				rsvp;
+	private boolean				isPublished;
+	private String				picture;
+
+	private Collection<User>	users;
+	private Collection<Comment>	comments;
+	private User				user;
+
+
 	//private Picture picture;
-	
+
 	@NotBlank
 	public String getName() {
-		return name;
+		return this.name;
 	}
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
-	
+
 	@NotBlank
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
-	public void setDescription(String description) {
+	public void setDescription(final String description) {
 		this.description = description;
 	}
-	
-	
+
 	public Date getMoment() {
-		return moment;
+		return this.moment;
 	}
-	public void setMoment(Date moment) {
+	public void setMoment(final Date moment) {
 		this.moment = moment;
 	}
-	
+
 	@Valid
 	@NotNull
 	public Location getLocation() {
-		return location;
+		return this.location;
 	}
-	public void setLocation(Location location) {
+	public void setLocation(final Location location) {
 		this.location = location;
 	}
-	
+
 	@NotNull
 	public boolean isRsvp() {
-		return rsvp;
+		return this.rsvp;
 	}
-	public void setRsvp(boolean rsvp) {
+	public void setRsvp(final boolean rsvp) {
 		this.rsvp = rsvp;
 	}
-	
+
 	@Valid
 	@NotNull
-	@OneToMany(mappedBy="rendezvous")
+	@OneToMany(mappedBy = "rendezvous")
 	public Collection<User> getUsers() {
-		return users;
+		return this.users;
 	}
-	public void setUsers(Collection<User> users) {
+	public void setUsers(final Collection<User> users) {
 		this.users = users;
 	}
-	
-	
+
 	@Valid
 	@NotNull
-	@OneToMany(mappedBy="rendezvous")
+	@OneToMany(mappedBy = "rendezvous")
 	public Collection<Comment> getComments() {
-		return comments;
+		return this.comments;
 	}
-	public void setComments(Collection<Comment> comments) {
+	public void setComments(final Collection<Comment> comments) {
 		this.comments = comments;
 	}
 
-	
-	
 	@Valid
 	@NotNull
-	@ManyToOne(optional=false)
+	@ManyToOne(optional = false)
 	public User getUser() {
-		return user;
+		return this.user;
 	}
-	public void setUser(User user) {
+	public void setUser(final User user) {
 		this.user = user;
 	}
-	
+
+	@NotNull
+	public boolean isPublished() {
+		return this.isPublished;
+	}
+	public void setPublished(final boolean isPublished) {
+		this.isPublished = isPublished;
+	}
+
+	@URL
+	public String getPicture() {
+		return this.picture;
+	}
+	public void setPicture(final String picture) {
+		this.picture = picture;
+	}
 
 }
