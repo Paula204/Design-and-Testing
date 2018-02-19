@@ -59,4 +59,13 @@
 	
 	<!-- Other domain beans come here -->	
 	
+	<bean id="admin1" class="domain.Administrator">
+		<property name="name" value="Lorena" />
+		<property name="surname" value="Batista" />
+		<property name="userAccount" ref="userAccount1"/>
+		<property name="address" value="Recaredo"/>
+		<property name="email" value="admin@admin.com"/>
+	</bean>
+	
+	<bean id="admin2"></bean>
 </beans>
