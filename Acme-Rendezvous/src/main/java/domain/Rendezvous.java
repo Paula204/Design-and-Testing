@@ -22,10 +22,14 @@ public class Rendezvous extends DomainEntity {
 	private Date moment;
 	private Location location;
 	private boolean rsvp;
+	private boolean isAdult;
 	private Collection<User> users;
 	private Collection<Comment> comments;
 	private User user;
-	//private Picture picture;
+	private Collection<Announcement> announcement;
+	private Rendezvous rendezvous;
+	private Collection<Rendezvous> rendezvouses;
+	
 	
 	@NotBlank
 	public String getName() {
@@ -88,6 +92,15 @@ public class Rendezvous extends DomainEntity {
 	public void setComments(Collection<Comment> comments) {
 		this.comments = comments;
 	}
+	
+	@NotNull
+	public boolean isAdult() {
+		return isAdult;
+	}
+	public void setAdult(boolean isAdult) {
+		this.isAdult = isAdult;
+	}
+	
 
 	
 	
@@ -100,6 +113,38 @@ public class Rendezvous extends DomainEntity {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
+	@Valid
+	@OneToMany(mappedBy="rendezvous")
+	@NotNull
+	public Collection<Announcement> getAnnouncement() {
+		return announcement;
+	}
+	public void setAnnouncement(Collection<Announcement> announcement) {
+		this.announcement = announcement;
+	}
+	
+	@OneToMany(mappedBy="rendezvous")
+	@Valid
+	@NotNull
+	public Rendezvous getRendezvous() {
+		return rendezvous;
+	}
+	public void setRendezvous(Rendezvous rendezvous) {
+		this.rendezvous = rendezvous;
+	}
+	
+	@Valid
+	@NotNull
+	@ManyToOne(optional=false)
+	public Collection<Rendezvous> getRendezvouses() {
+		return rendezvouses;
+	}
+	public void setRendezvouses(Collection<Rendezvous> rendezvouses) {
+		this.rendezvouses = rendezvouses;
+	}
+
 	
 
 }
