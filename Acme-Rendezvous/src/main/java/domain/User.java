@@ -51,12 +51,18 @@ public class User extends Actor {
 	public void setRendezvousAttending(final Collection<Rendezvous> rendezvousAttending) {
 		this.rendezvousAttending = rendezvousAttending;
 	}
+
+	@Valid
+	@NotNull
+	@OneToMany(mappedBy = "user")
 	public Collection<Question> getQuestionCreates() {
 		return this.questionCreates;
 	}
 	public void setQuestionCreates(final Collection<Question> questionCreates) {
 		this.questionCreates = questionCreates;
 	}
+
+	@ManyToMany
 	public Collection<Question> getQuiestionReponses() {
 		return this.quiestionReponses;
 	}
