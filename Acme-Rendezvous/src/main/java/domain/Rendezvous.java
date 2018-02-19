@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
@@ -19,17 +20,18 @@ import org.hibernate.validator.constraints.URL;
 @Access(AccessType.PROPERTY)
 public class Rendezvous extends DomainEntity {
 
-	private String				name;
-	private String				description;
-	private Date				moment;
-	private Location			location;
-	private boolean				rsvp;
-	private boolean				isPublished;
-	private String				picture;
+	private String					name;
+	private String					description;
+	private Date					moment;
+	private Location				location;
+	private boolean					rsvp;
+	private boolean					isPublished;
+	private String					picture;
 
-	private Collection<User>	users;
-	private Collection<Comment>	comments;
-	private User				user;
+	private Collection<User>		users;
+	private Collection<Comment>		comments;
+	private User					user;
+	private Collection<Question>	questions;
 
 
 	//private Picture picture;
@@ -76,7 +78,7 @@ public class Rendezvous extends DomainEntity {
 
 	@Valid
 	@NotNull
-	@OneToMany(mappedBy = "rendezvous")
+	@ManyToMany
 	public Collection<User> getUsers() {
 		return this.users;
 	}
@@ -118,6 +120,16 @@ public class Rendezvous extends DomainEntity {
 	}
 	public void setPicture(final String picture) {
 		this.picture = picture;
+	}
+
+	@Valid
+	@NotNull
+	@OneToMany
+	public Collection<Question> getQuestions() {
+		return this.questions;
+	}
+	public void setQuestions(final Collection<Question> questions) {
+		this.questions = questions;
 	}
 
 }
