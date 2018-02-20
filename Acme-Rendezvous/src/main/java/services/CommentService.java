@@ -74,8 +74,7 @@ public class CommentService {
 		
 		r.remove(comment);
 		for (Reply i: r)
-			this.replyService.remove(r);
-		
+			this.replyService.save(i);
 		
 		this.commentRepository.delete(comment);
 	}
