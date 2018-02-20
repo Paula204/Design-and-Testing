@@ -15,12 +15,12 @@ import javax.validation.constraints.NotNull;
 @Access(AccessType.PROPERTY)
 public class User extends Actor {
 
-	private Collection<Comment>		comments;
-	private Collection<Rendezvous>	rendezvousesCreated;
-	private Collection<Rendezvous>	rendezvousAttending;
-	private Collection<Question>	questionCreates;
-	private Collection<Question>	quiestionReponses;
-	private Collection<Reply>		replies;
+	private Collection<Comment>			comments;
+	private Collection<Rendezvous>		rendezvousesCreated;
+	private Collection<Rendezvous>		rendezvousAttending;
+	private Collection<Question>		questionCreates;
+	private Collection<QuestionReponse>	quiestionReponses;
+	private Collection<Reply>			replies;
 
 
 	@Valid
@@ -54,23 +54,13 @@ public class User extends Actor {
 	}
 
 	@Valid
-	@NotNull
 	@OneToMany(mappedBy = "user")
+	@NotNull
 	public Collection<Question> getQuestionCreates() {
 		return this.questionCreates;
 	}
 	public void setQuestionCreates(final Collection<Question> questionCreates) {
 		this.questionCreates = questionCreates;
-	}
-
-	@Valid
-	@NotNull
-	@ManyToMany
-	public Collection<Question> getQuiestionReponses() {
-		return this.quiestionReponses;
-	}
-	public void setQuiestionReponses(final Collection<Question> quiestionReponses) {
-		this.quiestionReponses = quiestionReponses;
 	}
 
 	@Valid
@@ -81,6 +71,16 @@ public class User extends Actor {
 	}
 	public void setReplies(final Collection<Reply> replies) {
 		this.replies = replies;
+	}
+
+	@Valid
+	@OneToMany(mappedBy = "user")
+	@NotNull
+	public Collection<QuestionReponse> getQuiestionReponses() {
+		return this.quiestionReponses;
+	}
+	public void setQuiestionReponses(final Collection<QuestionReponse> quiestionReponses) {
+		this.quiestionReponses = quiestionReponses;
 	}
 
 }
