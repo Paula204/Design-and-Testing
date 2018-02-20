@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.ArrayList;
@@ -10,27 +11,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import repositories.CommentRepository;
 import domain.Comment;
 import domain.Rendezvous;
 import domain.Reply;
 import domain.User;
 
-import repositories.CommentRepository;
-
 @Service
 @Transactional
 public class CommentService {
-	
+
 	@Autowired
-	CommentRepository commentRepository;
+	CommentRepository	commentRepository;
 	@Autowired
-	ActorService actorService;
-	public CommentService(){
+	ActorService		actorService;
+	@Autowired
+	ReplyService		replyService;
+
+
+	public CommentService() {
 		super();
 	}
-	
-	public Comment create(){
-		Comment res = new Comment();
+
+	public Comment create() {
+		final Comment res = new Comment();
 		final Date d = new Date(System.currentTimeMillis());
 		final User u = (User) this.actorService.findByPrincipal();
 		final Rendezvous r = new Rendezvous();
@@ -40,20 +44,20 @@ public class CommentService {
 		res.setUser(u);
 		res.setRendezvous(r);
 		res.setReplies(replies);
-		
+
 		return res;
 	}
-	
-	public Comment save(final Comment comment){
+
+	public Comment save(final Comment comment) {
 		Assert.notNull(comment.getRendezvous());
 		Assert.notNull(comment.getUser());
 		Assert.notNull(comment.getReplies());
 		final Date d = new Date(System.currentTimeMillis());
 		comment.setMoment(d);
-		Comment res = this.commentRepository.save(comment);
+		final Comment res = this.commentRepository.save(comment);
 		return res;
 	}
-	
+
 	public Collection<Comment> findAll() {
 		Collection<Comment> res;
 		res = this.commentRepository.findAll();
@@ -67,17 +71,20 @@ public class CommentService {
 		Assert.notNull(comment);
 		return comment;
 	}
-	
-	public void delete(final Comment comment){
+
+	public void delete(final Comment comment) {
 		Assert.notNull(comment);
-		Collection<Reply> r= comment.getReplies();
-		
+		final Collection<Reply> r = comment.getReplies();
+
 		r.remove(comment);
+
 		for (Reply i: r)
 			this.replyService.save(i);
-		
+
+		for (final Reply i : r)
+			this.replyService.save(i);
+
 		this.commentRepository.delete(comment);
 	}
-	
 
 }
