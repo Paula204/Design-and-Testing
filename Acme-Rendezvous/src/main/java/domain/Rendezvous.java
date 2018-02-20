@@ -33,6 +33,8 @@ public class Rendezvous extends DomainEntity {
 	private User					user;
 	private Collection<Question>	questions;
 
+	private String					surielrompecosas;
+
 
 	//private Picture picture;
 
