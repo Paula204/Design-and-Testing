@@ -38,15 +38,9 @@ public class Rendezvous extends DomainEntity {
 	private Collection<Announcement> announcement;
 	private Rendezvous rendezvous;
 	private Collection<Rendezvous> rendezvouses;
-	
-	
-
 	private boolean					isPublished;
 	private String					picture;
-
 	private Collection<Question>	questions;
-
-	private String					surielrompecosas;
 
 
 	//private Picture picture;
