@@ -50,7 +50,8 @@ public abstract class Actor extends DomainEntity {
 		this.address = address;
 	}
 	
-	@Pattern(regexp = "^(\\+[0-9]{1,3}\\ \\([0-9]{1,3}\\)\\ [0-9]{3,9})|([0-9]{3,15})|(\\+[0-9]{1,3}\\ [0-9]{3,15})$")	public String getPhone() {
+	@Pattern(regexp = "^(\\+[0-9]{1,3}\\ \\([0-9]{1,3}\\)\\ [0-9]{3,9})|([0-9]{3,15})|(\\+[0-9]{1,3}\\ [0-9]{3,15})$")	
+	public String getPhone() {
 		return phone;
 	}
 	public void setPhone(String phone) {
