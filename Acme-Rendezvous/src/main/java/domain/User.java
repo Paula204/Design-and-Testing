@@ -7,26 +7,21 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Access(AccessType.PROPERTY)
-
-	
-
 public class User extends Actor {
 
 	private Collection<Comment>			comments;
 	private Collection<Rendezvous>		rendezvousesCreated;
 	private Collection<Rendezvous>		rendezvousAttending;
 	private Collection<Question>		questionCreates;
-	private Collection<QuestionReponse>	quiestionReponses;
+	private Collection<QuestionReponse>	questionReponses;
 	private Collection<Reply>			replies;
-	private Collection<Announcement> announcements;
+	private Collection<Announcement>	announcements;
 
 
 	@Valid
@@ -83,19 +78,19 @@ public class User extends Actor {
 	@OneToMany(mappedBy = "user")
 	@NotNull
 	public Collection<QuestionReponse> getQuiestionReponses() {
-		return this.quiestionReponses;
+		return this.questionReponses;
 	}
 	public void setQuiestionReponses(final Collection<QuestionReponse> quiestionReponses) {
-		this.quiestionReponses = quiestionReponses;
+		this.questionReponses = quiestionReponses;
 	}
-	
-	@OneToMany(mappedBy="user")
+
+	@OneToMany(mappedBy = "user")
 	@Valid
 	@NotNull
 	public Collection<Announcement> getAnnouncements() {
-		return announcements;
+		return this.announcements;
 	}
-	public void setAnnouncements(Collection<Announcement> announcements) {
+	public void setAnnouncements(final Collection<Announcement> announcements) {
 		this.announcements = announcements;
 	}
 
