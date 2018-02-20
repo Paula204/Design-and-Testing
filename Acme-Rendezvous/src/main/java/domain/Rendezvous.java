@@ -16,34 +16,29 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import org.hibernate.validator.constraints.URL;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
 public class Rendezvous extends DomainEntity {
 
-	
-	private String name;
-	private String description;
-	private Date moment;
-	private Location location;
-	private boolean rsvp;
-	private boolean isAdult;
-	private Collection<User> users;
-	private Collection<Comment> comments;
-	private User user;
-	private Collection<Announcement> announcement;
-	private Rendezvous rendezvous;
-	private Collection<Rendezvous> rendezvouses;
-	private boolean					isPublished;
-	private String					picture;
-	private Collection<Question>	questions;
+	private String						name;
+	private String						description;
+	private Date						moment;
+	private Location					location;
+	private boolean						rsvp;
+	private boolean						isAdult;
+	private Collection<User>			users;
+	private Collection<Comment>			comments;
+	private User						user;
+	private Collection<Announcement>	announcement;
+	private Rendezvous					rendezvous;
+	private Collection<Rendezvous>		rendezvouses;
+	private boolean						isPublished;
+	private String						picture;
+	private Collection<Question>		questions;
 
-
-	//private Picture picture;
 
 	@NotBlank
 	public String getName() {
@@ -60,12 +55,10 @@ public class Rendezvous extends DomainEntity {
 	public void setDescription(final String description) {
 		this.description = description;
 	}
-	
+
 	@NotNull
 	@DateTimeFormat
 	@Temporal(TemporalType.TIMESTAMP)
-
-
 	public Date getMoment() {
 		return this.moment;
 	}
@@ -109,15 +102,14 @@ public class Rendezvous extends DomainEntity {
 	public void setComments(final Collection<Comment> comments) {
 		this.comments = comments;
 	}
-	
+
 	@NotNull
 	public boolean isAdult() {
-		return isAdult;
+		return this.isAdult;
 	}
-	public void setAdult(boolean isAdult) {
+	public void setAdult(final boolean isAdult) {
 		this.isAdult = isAdult;
 	}
-	
 
 	@Valid
 	@NotNull
@@ -128,39 +120,37 @@ public class Rendezvous extends DomainEntity {
 	public void setUser(final User user) {
 		this.user = user;
 	}
-	
-	
+
 	@Valid
-	@OneToMany(mappedBy="rendezvous")
+	@OneToMany(mappedBy = "rendezvous")
 	@NotNull
 	public Collection<Announcement> getAnnouncement() {
-		return announcement;
+		return this.announcement;
 	}
-	public void setAnnouncement(Collection<Announcement> announcement) {
+	public void setAnnouncement(final Collection<Announcement> announcement) {
 		this.announcement = announcement;
 	}
-	
-	@OneToMany(mappedBy="rendezvous")
+
+	@OneToMany(mappedBy = "rendezvous")
 	@Valid
 	@NotNull
 	public Rendezvous getRendezvous() {
-		return rendezvous;
+		return this.rendezvous;
 	}
-	public void setRendezvous(Rendezvous rendezvous) {
+	public void setRendezvous(final Rendezvous rendezvous) {
 		this.rendezvous = rendezvous;
 	}
-	
+
 	@Valid
 	@NotNull
-	@ManyToOne(optional=false)
+	@ManyToOne(optional = false)
 	public Collection<Rendezvous> getRendezvouses() {
-		return rendezvouses;
+		return this.rendezvouses;
 	}
-	public void setRendezvouses(Collection<Rendezvous> rendezvouses) {
+	public void setRendezvouses(final Collection<Rendezvous> rendezvouses) {
 		this.rendezvouses = rendezvouses;
 	}
 
-	
 	@NotNull
 	public boolean isPublished() {
 		return this.isPublished;
