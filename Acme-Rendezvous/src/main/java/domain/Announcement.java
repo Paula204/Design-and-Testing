@@ -22,7 +22,7 @@ public class Announcement extends DomainEntity{
 	private Rendezvous rendezvous;
 	
 	
-	
+	@NotNull
 	@DateTimeFormat
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getMoment() {
