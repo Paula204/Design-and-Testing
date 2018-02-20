@@ -31,7 +31,7 @@ public class UserService {
 	public User create(){
 		final User res = new User();
 		res.setComments(new ArrayList<Comment>());
-		res.setRendezvouses(new ArrayList<Rendezvous>());
+		res.setRendezvousesCreated(new ArrayList<Rendezvous>());
 		res.setAnnouncements(new ArrayList<Announcement>());
 		return res;
 	}
@@ -55,7 +55,7 @@ public class UserService {
 	public User save(final User u){
 		Assert.notNull(u);
 		Assert.notNull(u.getComments());
-		Assert.notNull(u.getRendezvous());
+		Assert.notNull(u.getRendezvousesCreated());
 		Assert.notNull(u.getAnnouncements());
 		Assert.notNull(u.getUserAccount());
 		Assert.notNull(u.getName());
