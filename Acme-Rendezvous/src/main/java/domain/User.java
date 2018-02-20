@@ -2,29 +2,23 @@
 package domain;
 
 import java.util.Collection;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Access(AccessType.PROPERTY)
-
-	
-
 public class User extends Actor {
 
 	private Collection<Comment>			comments;
 	private Collection<Rendezvous>		rendezvousesCreated;
 	private Collection<Rendezvous>		rendezvousAttending;
 	private Collection<Question>		questionCreates;
-	private Collection<QuestionReponse>	quiestionReponses;
+	private Collection<QuestionReponse>	questionReponses;
 	private Collection<Reply>			replies;
 	private Collection<Announcement> announcements;
 
@@ -82,11 +76,11 @@ public class User extends Actor {
 	@Valid
 	@OneToMany(mappedBy = "user")
 	@NotNull
-	public Collection<QuestionReponse> getQuiestionReponses() {
-		return this.quiestionReponses;
+	public Collection<QuestionReponse> getQuestionReponses() {
+		return this.questionReponses;
 	}
-	public void setQuiestionReponses(final Collection<QuestionReponse> quiestionReponses) {
-		this.quiestionReponses = quiestionReponses;
+	public void setQuestionReponses(final Collection<QuestionReponse> quiestionReponses) {
+		this.questionReponses = quiestionReponses;
 	}
 	
 	@OneToMany(mappedBy="user")
