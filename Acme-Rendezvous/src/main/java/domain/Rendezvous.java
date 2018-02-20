@@ -27,13 +27,11 @@ public class Rendezvous extends DomainEntity {
 	private boolean					rsvp;
 	private boolean					isPublished;
 	private String					picture;
-	private String					Prueba;
 	private Collection<User>		users;
 	private Collection<Comment>		comments;
 	private User					user;
 	private Collection<Question>	questions;
-
-	private String					surielrompecosas;
+	private String					joder;
 
 
 	//private Picture picture;
@@ -132,12 +130,6 @@ public class Rendezvous extends DomainEntity {
 	}
 	public void setQuestions(final Collection<Question> questions) {
 		this.questions = questions;
-	}
-	public String getPrueba() {
-		return Prueba;
-	}
-	public void setPrueba(String prueba) {
-		Prueba = prueba;
 	}
 
 }
