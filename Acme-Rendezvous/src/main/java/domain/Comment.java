@@ -1,12 +1,14 @@
 
 package domain;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -17,12 +19,13 @@ import org.hibernate.validator.constraints.URL;
 @Access(AccessType.PROPERTY)
 public class Comment extends DomainEntity {
 
-	private Date		moment;
-	private String		text;
-	private String		picture;
+	private Date				moment;
+	private String				text;
+	private String				picture;
 
-	private User		user;
-	private Rendezvous	rendezvous;
+	private User				user;
+	private Rendezvous			rendezvous;
+	private Collection<Reply>	replies;
 
 
 	@NotNull
@@ -67,6 +70,16 @@ public class Comment extends DomainEntity {
 	}
 	public void setRendezvous(final Rendezvous rendezvous) {
 		this.rendezvous = rendezvous;
+	}
+
+	@Valid
+	@NotNull
+	@OneToMany(mappedBy = "comment")
+	public Collection<Reply> getReplies() {
+		return this.replies;
+	}
+	public void setReplies(final Collection<Reply> replies) {
+		this.replies = replies;
 	}
 
 }

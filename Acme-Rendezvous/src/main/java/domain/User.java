@@ -20,6 +20,7 @@ public class User extends Actor {
 	private Collection<Rendezvous>	rendezvousAttending;
 	private Collection<Question>	questionCreates;
 	private Collection<Question>	quiestionReponses;
+	private Collection<Reply>		replies;
 
 
 	@Valid
@@ -62,12 +63,24 @@ public class User extends Actor {
 		this.questionCreates = questionCreates;
 	}
 
+	@Valid
+	@NotNull
 	@ManyToMany
 	public Collection<Question> getQuiestionReponses() {
 		return this.quiestionReponses;
 	}
 	public void setQuiestionReponses(final Collection<Question> quiestionReponses) {
 		this.quiestionReponses = quiestionReponses;
+	}
+
+	@Valid
+	@OneToMany(mappedBy = "user")
+	@NotNull
+	public Collection<Reply> getReplies() {
+		return this.replies;
+	}
+	public void setReplies(final Collection<Reply> replies) {
+		this.replies = replies;
 	}
 
 }
