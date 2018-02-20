@@ -67,6 +67,6 @@ public class ReplyService {
 		this.commentService.save(comment);
 
 		this.replyRepository.delete(reply);
-
+		
 	}
 }
