@@ -2,6 +2,7 @@
 package domain;
 
 import java.util.Collection;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
@@ -12,7 +13,6 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Access(AccessType.PROPERTY)
-
 public class User extends Actor {
 
 	private Collection<Comment>			comments;
@@ -78,12 +78,10 @@ public class User extends Actor {
 	@OneToMany(mappedBy = "user")
 	@NotNull
 	public Collection<QuestionReponse> getQuestionReponses() {
-
 		return this.questionReponses;
 	}
-	public void setQuestionReponses(final Collection<QuestionReponse> quiestionReponses) {
-
-		this.questionReponses = quiestionReponses;
+	public void setQuestionReponses(final Collection<QuestionReponse> questionReponses) {
+		this.questionReponses = questionReponses;
 	}
 
 	@OneToMany(mappedBy = "user")
