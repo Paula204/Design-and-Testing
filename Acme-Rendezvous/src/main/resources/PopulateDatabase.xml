@@ -36,7 +36,7 @@
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="CUSTOMER" />
+					<property name="authority" value="USER" />
 				</bean>
 			</list>
 		</property>
@@ -48,7 +48,7 @@
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="CUSTOMER" />
+					<property name="authority" value="USER" />
 				</bean>
 			</list>
 		</property>
@@ -233,7 +233,7 @@
 	
 	<bean id="question1" class="domain.Question">
 		<property name="title" value="Pregunta 1"/>
-		<property name="user" ref="user1"/>
+		<property name="user" ref="user2"/>
 		<property name="rendezvous" ref="rendezvous1"/>
 	</bean>
 	
@@ -262,10 +262,10 @@
 	</bean>
 	
 	<bean id="rendezvous1" class="domain.Rendezvous">
-		<property name="name" value="Rendezvous"/>
+		<property name="title" value="Rendezvous"/>
 		<property name="description" value="Rendezdezvous"/>
 		<property name="moment" value="15/05/2018 22:05"/>
-		<property name="location" ref="Location1"/>
+		<property name="location" ref="location1"/>
 		<property name="rsvp" value="true"/>
 		<property name="isAdult" value="true"/>
 		<property name="isPublished" value="true"/>
@@ -300,10 +300,10 @@
 	</bean>
 	
 	<bean id="rendezvous2" class="domain.Rendezvous">
-		<property name="name" value="Rendezvous2"/>
+		<property name="title" value="Rendezvous2"/>
 		<property name="description" value="Rendezdezvous2"/>
 		<property name="moment" value="16/05/2018 22:05"/>
-		<property name="location" ref="Location2"/>
+		<property name="location" ref="location2"/>
 		<property name="rsvp" value="true"/>
 		<property name="isAdult" value="true"/>
 		<property name="isPublished" value="true"/>
@@ -338,15 +338,15 @@
 	</bean>
 	
 	<bean id="rendezvous3" class="domain.Rendezvous">
-		<property name="name" value="Rendezvous2"/>
+		<property name="title" value="Rendezvous2"/>
 		<property name="description" value="Rendezdezvous2"/>
 		<property name="moment" value="18/05/2018 22:05"/>
-		<property name="location" ref="Location3"/>
+		<property name="location" ref="location3"/>
 		<property name="rsvp" value="true"/>
 		<property name="isAdult" value="true"/>
 		<property name="isPublished" value="true"/>
 		<property name="user" ref="user2"/>
-		<property name="rendezvous" ref="rendezvous1"/>
+		<property name="rendezvous" ref="rendezvous2"/>
 		<property name="picture" value="http://www.acme.com"/>
 		<property name="announcements">
 			<list>
@@ -355,7 +355,7 @@
 		</property>
 		<property name="rendezvouses">
 			<list>
-				<ref bean="rendezvous2"/>
+				<ref bean="rendezvous1"/>
 			</list>
 		</property>
 		<property name="users">
@@ -394,6 +394,6 @@
 		<property name="moment" value="20/07/2018 21:05"/>
 		<property name="user" ref="user2"/>
 		<property name="comment" ref="comment3"/>
-	</bean>
+</bean>
 	
 </beans>
