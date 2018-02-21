@@ -166,6 +166,14 @@
 		<property name="rendezvous" ref="rendezvous2"/>
 	</bean>
 	
+	<bean id="announcement3" class="domain.Announcement">
+		<property name="moment" value="25/05/2018 20:00"/>
+		<property name="title" value="Titulo3"/>
+		<property name="description" value="Decripción3"/>
+		<property name="user" ref="user2"/>
+		<property name="rendezvous" ref="rendezvous3"/>
+	</bean>
+	
 	<bean id="comment1" class="domain.Comment">
 		<property name="moment" value="15/05/2018 12:00"/>
 		<property name="text" value="Texto"/>
@@ -192,6 +200,19 @@
 		</property>
 	</bean>
 	
+	<bean id="comment3" class="domain.Comment">
+		<property name="moment" value="19/05/2018 12:00"/>
+		<property name="text" value="Texto3"/>
+		<property name="picture" value="http://www.acme.com"/>
+		<property name="user" ref="user2"/>
+		<property name="rendezvous" ref="rendezvous3"/>
+		<property name="replies">
+			<list>
+				<ref bean="reply3"/>
+			</list>
+		</property>
+	</bean>
+	
 	<bean id="location1" class="domain.Location">
 		<property name="name" value="San Petesburgo"/>
 		<property name="latitude" value="10.0"/>
@@ -204,6 +225,12 @@
 		<property name="longitude" value="15.0"/>
 	</bean>
 	
+	<bean id="location3" class="domain.Location">
+		<property name="name" value="Springfield"/>
+		<property name="latitude" value="32.0"/>
+		<property name="longitude" value="-5.0"/>
+	</bean>	
+	
 	<bean id="question1" class="domain.Question">
 		<property name="title" value="Pregunta 1"/>
 		<property name="user" ref="user1"/>
@@ -214,6 +241,12 @@
 		<property name="title" value="Pregunta 2"/>
 		<property name="user" ref="user2"/>
 		<property name="rendezvous" ref="rendezvous2"/>
+	</bean>
+	
+	<bean id="question3" class="domain.Question">
+		<property name="title" value="Pregunta 3"/>
+		<property name="user" value="user1"/>
+		<property name="rendezvous" value="rendezvous3"/>
 	</bean>
 	
 	<bean id="questionReponse1" class="domain.QuestionReponse">
@@ -237,9 +270,9 @@
 		<property name="isAdult" value="true"/>
 		<property name="isPublished" value="true"/>
 		<property name="user" ref="user1"/>
-		<property name="rendezvous" ref="rendezvous1"/>
+		<property name="rendezvous" ref="rendezvous3"/>
 		<property name="picture" value="http://www.acme2.com"/>
-		<property name="announcement">
+		<property name="announcements">
 			<list>
 				<ref bean="announcement1"/>
 			</list>
@@ -266,7 +299,7 @@
 		</property>
 	</bean>
 	
-		<bean id="rendezvous2" class="domain.Rendezvous">
+	<bean id="rendezvous2" class="domain.Rendezvous">
 		<property name="name" value="Rendezvous2"/>
 		<property name="description" value="Rendezdezvous2"/>
 		<property name="moment" value="16/05/2018 22:05"/>
@@ -275,16 +308,16 @@
 		<property name="isAdult" value="true"/>
 		<property name="isPublished" value="true"/>
 		<property name="user" ref="user2"/>
-		<property name="rendezvous" ref="rendezvous2"/>
+		<property name="rendezvous" ref="rendezvous1"/>
 		<property name="picture" value="http://www.acme.com"/>
-		<property name="announcement">
+		<property name="announcements">
 			<list>
 				<ref bean="announcement2"/>
 			</list>
 		</property>
 		<property name="rendezvouses">
 			<list>
-				<ref bean="rendezvous1"/>
+				<ref bean="rendezvous3"/>
 			</list>
 		</property>
 		<property name="users">
@@ -304,18 +337,63 @@
 		</property>
 	</bean>
 	
+	<bean id="rendezvous3" class="domain.Rendezvous">
+		<property name="name" value="Rendezvous2"/>
+		<property name="description" value="Rendezdezvous2"/>
+		<property name="moment" value="18/05/2018 22:05"/>
+		<property name="location" ref="Location3"/>
+		<property name="rsvp" value="true"/>
+		<property name="isAdult" value="true"/>
+		<property name="isPublished" value="true"/>
+		<property name="user" ref="user2"/>
+		<property name="rendezvous" ref="rendezvous1"/>
+		<property name="picture" value="http://www.acme.com"/>
+		<property name="announcements">
+			<list>
+				<ref bean="announcement3"/>
+			</list>
+		</property>
+		<property name="rendezvouses">
+			<list>
+				<ref bean="rendezvous2"/>
+			</list>
+		</property>
+		<property name="users">
+			<list>
+				<ref bean="user2"/>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+				<ref bean="comment3"/>
+			</list>
+		</property>
+		<property name="questions">
+			<list>
+				<ref bean="question3"/>
+			</list>
+		</property>
+	</bean>
+	
 	<bean name="reply1" class="domain.Reply">
 		<property name="text" value="reply"/>
-		<property name="moment" value="16/07/2018"/>
+		<property name="moment" value="16/07/2018 12:15"/>
 		<property name="user" ref="user1"/>
 		<property name="comment" ref="comment1"/>
 	</bean>
 	
 	<bean name="reply2" class="domain.Reply">
 		<property name="text" value="reply1"/>
-		<property name="moment" value="17/07/2018"/>
+		<property name="moment" value="17/07/2018 22:00"/>
 		<property name="user" ref="user2"/>
 		<property name="comment" ref="comment2"/>
+	</bean>
+	
+	<bean name="reply3" class="domain.Reply">
+		<property name="text" value="reply3"/>
+		<property name="moment" value="20/07/2018 21:05"/>
+		<property name="user" ref="user2"/>
+		<property name="comment" ref="comment3"/>
 	</bean>
 	
 </beans>
