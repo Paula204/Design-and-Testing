@@ -77,11 +77,11 @@ public class User extends Actor {
 	@Valid
 	@OneToMany(mappedBy = "user")
 	@NotNull
-	public Collection<QuestionReponse> getQuiestionReponses() {
+	public Collection<QuestionReponse> getQuestionReponses() {
 		return this.questionReponses;
 	}
-	public void setQuiestionReponses(final Collection<QuestionReponse> quiestionReponses) {
-		this.questionReponses = quiestionReponses;
+	public void setQuestionReponses(final Collection<QuestionReponse> questionReponses) {
+		this.questionReponses = questionReponses;
 	}
 
 	@OneToMany(mappedBy = "user")

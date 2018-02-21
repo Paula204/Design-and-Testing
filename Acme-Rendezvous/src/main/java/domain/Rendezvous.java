@@ -33,7 +33,7 @@ public class Rendezvous extends DomainEntity {
 	private User						user;
 	private Rendezvous					rendezvous;
 	private String						picture;
-	private Collection<Announcement>	announcement;
+	private Collection<Announcement>	announcements;
 	private Collection<Rendezvous>		rendezvouses;
 	private Collection<User>			users;
 	private Collection<Comment>			comments;
@@ -124,11 +124,11 @@ public class Rendezvous extends DomainEntity {
 	@Valid
 	@OneToMany(mappedBy = "rendezvous")
 	@NotNull
-	public Collection<Announcement> getAnnouncement() {
-		return this.announcement;
+	public Collection<Announcement> getAnnouncements() {
+		return this.announcements;
 	}
-	public void setAnnouncement(final Collection<Announcement> announcement) {
-		this.announcement = announcement;
+	public void setAnnouncements(final Collection<Announcement> announcement) {
+		this.announcements = announcement;
 	}
 
 	@Valid
