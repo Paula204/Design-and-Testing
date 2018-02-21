@@ -27,7 +27,7 @@ public class Announcement extends DomainEntity {
 
 
 	@NotNull
-	@DateTimeFormat(pattern = "dd/MM8/yyyy hh:mm")
+	@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm")
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getMoment() {
 		return this.moment;
