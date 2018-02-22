@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.Collection;
@@ -10,9 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.AnnouncementRepository;
-
 import domain.Announcement;
-import domain.Comment;
 import domain.Rendezvous;
 import domain.User;
 
@@ -21,16 +20,17 @@ import domain.User;
 public class AnnouncementService {
 
 	@Autowired
-	AnnouncementRepository announcementRepository;
+	AnnouncementRepository	announcementRepository;
 	@Autowired
-	ActorService actorService;
-	
-	public AnnouncementService(){
+	ActorService			actorService;
+
+
+	public AnnouncementService() {
 		super();
 	}
-	
-	public Announcement create(){
-		Announcement res = new Announcement();
+
+	public Announcement create() {
+		final Announcement res = new Announcement();
 		final Date d = new Date(System.currentTimeMillis() - 5);
 		final User u = (User) this.actorService.findByPrincipal();
 		res.setTitle("Inserte un título");
@@ -38,7 +38,7 @@ public class AnnouncementService {
 		res.setUser(u);
 		return res;
 	}
-	
+
 	public Announcement save(final Announcement a) {
 
 		Assert.notNull(a);
@@ -46,13 +46,13 @@ public class AnnouncementService {
 		Assert.notNull(a.getDescription());
 		Assert.notNull(a.getUser());
 		Assert.notNull(a.getRendezvous());
-		Date d = new Date(System.currentTimeMillis()-5);
+		final Date d = new Date(System.currentTimeMillis() - 5);
 		a.setMoment(d);
-		Announcement res = this.announcementRepository.save(a);
+		final Announcement res = this.announcementRepository.save(a);
 		return res;
-		
+
 	}
-	
+
 	public Collection<Announcement> findAll() {
 		Collection<Announcement> res;
 		res = this.announcementRepository.findAll();
@@ -66,10 +66,10 @@ public class AnnouncementService {
 		Assert.notNull(announcement);
 		return announcement;
 	}
-	
-	public void delete(final Announcement ann){
+
+	public void delete(final Announcement ann) {
 		Assert.notNull(ann);
-		Rendezvous r =ann.getRendezvous();
+		final Rendezvous r = ann.getRendezvous();
 		//r.getAnnouncements().remove(ann);
 		//Y el for guardando eso
 		this.announcementRepository.delete(ann);

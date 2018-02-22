@@ -78,7 +78,7 @@ public class CommentService {
 
 		r.remove(comment);
 
-		for (Reply i: r)
+		for (final Reply i : r)
 			this.replyService.save(i);
 
 		for (final Reply i : r)

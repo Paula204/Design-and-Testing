@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.ArrayList;
@@ -10,43 +11,42 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import domain.Administrator;
-
 import repositories.AdministratorRepository;
 import security.Authority;
 import security.UserAccount;
+import domain.Administrator;
 
 @Service
 @Transactional
 public class AdministratorService {
-	
+
 	@Autowired
-	AdministratorRepository administratorRepository;
+	AdministratorRepository	administratorRepository;
 	@Autowired
-	ActorService actorService;
-	
-	public AdministratorService(){
+	ActorService			actorService;
+
+
+	public AdministratorService() {
 		super();
 	}
-	
-	public Administrator create(){
-		Administrator res= new Administrator();
+
+	public Administrator create() {
+		final Administrator res = new Administrator();
 		return res;
 	}
-	
-	public Administrator save(Administrator admin){
+
+	public Administrator save(final Administrator admin) {
 		Assert.notNull(admin);
 		Assert.notNull(admin.getEmail());
 		Assert.notNull(admin.getName());
 		Assert.notNull(admin.getSurname());
 		Assert.notNull(admin.getUserAccount());
-		
-		Administrator res= this.administratorRepository.save(admin);
+
+		final Administrator res = this.administratorRepository.save(admin);
 		return res;
-		
+
 	}
-	
-	
+
 	public Administrator saveWithUserAccount(final Administrator admin) {
 		Assert.notNull(admin);
 		Assert.notNull(admin.getEmail());
@@ -72,7 +72,7 @@ public class AdministratorService {
 
 		return this.administratorRepository.save(admin);
 	}
-	
+
 	public void delete(final Administrator admin) {
 		Assert.notNull(admin);
 		this.administratorRepository.delete(admin);
