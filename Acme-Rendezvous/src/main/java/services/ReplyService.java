@@ -26,6 +26,9 @@ public class ReplyService {
 	@Autowired
 	private CommentService	commentService;
 
+	@Autowired
+	private ActorService	actorService;
+
 
 	public ReplyService() {
 		super();
@@ -41,6 +44,8 @@ public class ReplyService {
 
 	public Reply create() {
 		final Reply res = new Reply();
+		final User u = (User) this.actorService.findByPrincipal();
+		res.setUser(u);
 		return res;
 	}
 
@@ -67,6 +72,6 @@ public class ReplyService {
 		this.commentService.save(comment);
 
 		this.replyRepository.delete(reply);
-		
+
 	}
 }

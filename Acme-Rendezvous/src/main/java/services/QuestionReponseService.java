@@ -26,6 +26,9 @@ public class QuestionReponseService {
 	@Autowired
 	private UserService					userService;
 
+	@Autowired
+	private ActorService				actorService;
+
 
 	public QuestionReponseService() {
 		super();
@@ -41,6 +44,8 @@ public class QuestionReponseService {
 
 	public QuestionReponse create() {
 		final QuestionReponse res = new QuestionReponse();
+		final User u = (User) this.actorService.findByPrincipal();
+		res.setUser(u);
 		return res;
 	}
 

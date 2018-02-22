@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.ArrayList;
@@ -10,6 +11,9 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import repositories.UserRepository;
+import security.Authority;
+import security.UserAccount;
 import domain.Announcement;
 import domain.Comment;
 import domain.Question;
@@ -17,28 +21,32 @@ import domain.QuestionReponse;
 import domain.Rendezvous;
 import domain.Reply;
 import domain.User;
-import repositories.UserRepository;
-import security.Authority;
-import security.UserAccount;
 
 @Service
 @Transactional
 public class UserService {
 
 	@Autowired
-	UserRepository userRepository;
+	UserRepository			userRepository;
 	@Autowired
-	AnnouncementService announcementService;
+	AnnouncementService		announcementService;
 	@Autowired
-	CommentService commentService;
+	CommentService			commentService;
 	@Autowired
-	ReplyService replyService;
+	ReplyService			replyService;
+	@Autowired
+	QuestionService			questionService;
+	@Autowired
+	RendezvousService		rendezvousService;
+	@Autowired
+	QuestionReponseService	questionReponseService;
+
 
 	public UserService() {
 		super();
 	}
-	
-	public User create(){
+
+	public User create() {
 		final User res = new User();
 		res.setComments(new ArrayList<Comment>());
 		res.setRendezvousesCreated(new ArrayList<Rendezvous>());
@@ -49,14 +57,13 @@ public class UserService {
 		res.setReplies(new ArrayList<Reply>());
 		return res;
 	}
-	
+
 	public Collection<User> findAll() {
 		Collection<User> res;
 		res = this.userRepository.findAll();
 		Assert.notNull(res);
 		return res;
 	}
-	
 
 	public User findOne(final int id) {
 		Assert.isTrue(id != 0);
@@ -65,8 +72,8 @@ public class UserService {
 		Assert.notNull(res);
 		return res;
 	}
-	
-	public User save(final User u){
+
+	public User save(final User u) {
 		Assert.notNull(u);
 		Assert.notNull(u.getComments());
 		Assert.notNull(u.getRendezvousesCreated());
@@ -79,11 +86,11 @@ public class UserService {
 		Assert.notNull(u.getQuestionReponses());
 		Assert.notNull(u.getReplies());
 		Assert.notNull(u.getRendezvousAttending());
-		 User res=this.userRepository.save(u);
+		final User res = this.userRepository.save(u);
 		return res;
 	}
-	
-	public User saveWithUserAccount(final User u){
+
+	public User saveWithUserAccount(final User u) {
 		Assert.notNull(u);
 		Assert.notNull(u.getComments());
 		Assert.notNull(u.getRendezvousesCreated());
@@ -96,9 +103,9 @@ public class UserService {
 		Assert.notNull(u.getQuestionReponses());
 		Assert.notNull(u.getReplies());
 		Assert.notNull(u.getRendezvousAttending());
-		
-		final Md5PasswordEncoder coder= new Md5PasswordEncoder();
-		
+
+		final Md5PasswordEncoder coder = new Md5PasswordEncoder();
+
 		final String pass = coder.encodePassword(u.getUserAccount().getPassword(), null);
 
 		final UserAccount user = new UserAccount();
@@ -118,17 +125,17 @@ public class UserService {
 
 		return this.userRepository.save(u);
 	}
-	
+
 	public void delete(final User user) {
 		Assert.notNull(user);
-		final Collection<Announcement> announ= user.getAnnouncements();
+		final Collection<Announcement> announ = user.getAnnouncements();
 		final Collection<Reply> rep = user.getReplies();
-		final Collection<QuestionReponse> qr= user.getQuestionReponses();
-		final Collection<Question> q= user.getQuestionCreates();
-		final Collection<Comment> comm= user.getComments();
-		final Collection<Rendezvous> renA= user.getRendezvousAttending();
+		final Collection<QuestionReponse> qr = user.getQuestionReponses();
+		final Collection<Question> q = user.getQuestionCreates();
+		final Collection<Comment> comm = user.getComments();
+		final Collection<Rendezvous> renA = user.getRendezvousAttending();
 		final Collection<Rendezvous> rendC = user.getRendezvousesCreated();
-		
+
 		announ.remove(user);
 		rep.remove(user);
 		qr.remove(user);
@@ -136,22 +143,22 @@ public class UserService {
 		comm.remove(user);
 		renA.remove(user);
 		rendC.remove(user);
-		
+
 		for (final Announcement i : announ)
 			this.announcementService.save(i);
 		for (final Reply j : rep)
 			this.replyService.save(j);
-		for (final QuestionReponse k: qr)
+		for (final QuestionReponse k : qr)
 			this.questionReponseService.save(k);
-		for (final Question l: q)
-			this.questionService.save(q);
-		for (final Comment m: comm)
+		for (final Question l : q)
+			this.questionService.save(l);
+		for (final Comment m : comm)
 			this.commentService.save(m);
-		for (final Rendezvous n: renA)
+		for (final Rendezvous n : renA)
 			this.rendezvousService.save(n);
-		for (final Rendezvous o: renC)
+		for (final Rendezvous o : rendC)
 			this.rendezvousService.save(o);
-		
+
 		this.userRepository.delete(user);
 	}
 

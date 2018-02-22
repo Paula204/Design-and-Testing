@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -30,6 +31,9 @@ public class QuestionService {
 	@Autowired
 	private QuestionReponseService	questionReponseService;
 
+	@Autowired
+	private ActorService			actorService;
+
 
 	public QuestionService() {
 		super();
@@ -45,6 +49,10 @@ public class QuestionService {
 
 	public Question create() {
 		final Question res = new Question();
+		final Collection<QuestionReponse> qr = new ArrayList<QuestionReponse>();
+		res.setQuestionreponses(qr);
+		final User u = (User) this.actorService.findByPrincipal();
+		res.setUser(u);
 		return res;
 	}
 
