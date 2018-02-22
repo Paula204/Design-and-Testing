@@ -23,7 +23,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Access(AccessType.PROPERTY)
 public class Rendezvous extends DomainEntity {
 
-	private String						name;
+	private String						title;
 	private String						description;
 	private Date						moment;
 	private Location					location;
@@ -41,11 +41,11 @@ public class Rendezvous extends DomainEntity {
 
 
 	@NotBlank
-	public String getName() {
-		return this.name;
+	public String getTitle() {
+		return this.title;
 	}
-	public void setName(final String name) {
-		this.name = name;
+	public void setTitle(final String title) {
+		this.title = title;
 	}
 
 	@NotBlank
@@ -104,10 +104,10 @@ public class Rendezvous extends DomainEntity {
 	}
 
 	@NotNull
-	public boolean isAdult() {
+	public boolean getIsAdult() {
 		return this.isAdult;
 	}
-	public void setAdult(final boolean isAdult) {
+	public void setIsAdult(final boolean isAdult) {
 		this.isAdult = isAdult;
 	}
 
@@ -142,10 +142,10 @@ public class Rendezvous extends DomainEntity {
 	}
 
 	@NotNull
-	public boolean isPublished() {
+	public boolean getIsPublished() {
 		return this.isPublished;
 	}
-	public void setPublished(final boolean isPublished) {
+	public void setIsPublished(final boolean isPublished) {
 		this.isPublished = isPublished;
 	}
 

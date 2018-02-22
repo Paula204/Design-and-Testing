@@ -52,7 +52,6 @@ public class Question extends DomainEntity {
 	}
 
 	@Valid
-	@NotNull
 	@OneToMany(mappedBy = "question")
 	public Collection<QuestionReponse> getQuestionreponses() {
 		return this.questionreponses;
